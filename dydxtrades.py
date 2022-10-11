@@ -14,7 +14,7 @@ from websocket import create_connection
 def openconnection():
         global ws
         global api_data
-#       ws = create_connection("wss://api.stage.dydx.exchange/v3/ws")
+        #ws = create_connection("wss://api.stage.dydx.exchange/v3/ws")
         ws = create_connection("wss://api.dydx.exchange/v3/ws")
         api_data = {
                 "type": "subscribe",
@@ -47,6 +47,7 @@ print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+' dydxtrades.py')
 logger = logging.getLogger("Rotating Log")
 logger.setLevel(logging.INFO)
 pp = pprint.PrettyPrinter(width = 41, compact = True)
+
 if platform == "linux" or platform == "linux2":
         # linux
         ramdiskpath = '/mnt/ramdisk'

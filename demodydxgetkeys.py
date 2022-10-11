@@ -3,14 +3,14 @@ from dydx3 import constants
 from dydx3 import private_key_to_public_key_pair_hex
 
 ########################## YOU FILL THIS OUT #################
-_private_key = '<FILL_THIS_OUT>'
+_private_key = '5d9e195293e8ffddf8160445258f52b79ae27c2a5efbe78767f0dece1246d2e3'
 #_private_key is optional and may be set to '' (hardware wallets do not generally provide this information)
 #If _private_key is set, you do not need to set _api_key/_api_secret/_api_passphrase/_stark_private_key
-_api_key = '<FILL_THIS_OUT>'
-_api_secret = '<FILL_THIS_OUT>'
-_api_passphrase = '<FILL_THIS_OUT>'
-_stark_private_key = '<FILL_THIS_OUT>'
-_eth_address = '<FILL_THIS_OUT>'
+_api_key = '51cc76a3-9fdc-d824-fbb4-08e184818dc0'
+_api_secret = 'TGvg2kSVEBF75VOWp_HbAGmW1kahMtI27pJTuf6W'
+_api_passphrase = 'rbBAJSYuqKIghCyW9HLl'
+_stark_private_key = '0x3e1afab8f4fcf5776a25065e83b6dfd00d6d0d0b6fb15b1f1ad534edcb19517'
+_eth_address = '0x8b9D414d40E82c6CDCbFf4150754999B21C4daFA'
 _network_id = str(constants.NETWORK_ID_GOERLI)
 #_network_id is set to either str(constants.NETWORK_ID_MAINNET) or str(constants.NETWORK_ID_GOERLI)
 _api_host = constants.API_HOST_GOERLI

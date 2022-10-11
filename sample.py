@@ -3,10 +3,10 @@ from dydx3 import constants
 from dydx3 import epoch_seconds_to_iso
 import time
 
-_network_id = str(constants.NETWORK_ID_ROPSTEN)
-_api_host = constants.API_HOST_ROPSTEN
-_private_key = '<FILL_THIS_OUT>'
-_eth_address = '<FILL_THIS_OUT>'
+_network_id = str(constants.NETWORK_ID_GOERLI)
+_api_host = constants.API_HOST_GOERLI
+_private_key = '5d9e195293e8ffddf8160445258f52b79ae27c2a5efbe78767f0dece1246d2e3'
+_eth_address = '0x8b9D414d40E82c6CDCbFf4150754999B21C4daFA'
 
 client = Client(
         host = _api_host,
@@ -16,9 +16,10 @@ client = Client(
 )
 
 #this program does not work unless line #19 moves below line #21
-get_accounts_data = client.private.get_accounts()
+
 stark_private_key = client.onboarding.derive_stark_key()
 client.stark_private_key = stark_private_key
+get_accounts_data = client.private.get_accounts()
 
 get_account_result = client.private.get_account(
         ethereum_address = _eth_address

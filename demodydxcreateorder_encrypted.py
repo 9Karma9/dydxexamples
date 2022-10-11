@@ -45,7 +45,7 @@ if decryptionkey == 'encrypt':
                 print(base64.b64encode(encryptedmessage))
 _eth_address = decrypt(base64.b64decode(_eth_address_encrypted), decryptionkey).decode()
 
-if _private_key != '':
+if _private_key_encrypted != '':
         _private_key = decrypt(base64.b64decode(_private_key_encrypted), decryptionkey).decode()
         client = Client(
                 host = _api_host,
