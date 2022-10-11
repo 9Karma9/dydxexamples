@@ -3,7 +3,7 @@ from dydx3 import constants
 from dydx3 import epoch_seconds_to_iso
 import time
 import schedule
-from dydx3.constants import MARKET_ETH_USD
+from dydx3.constants import MARKET_BTC_USD
 
 
 ########################## YOU FILL THIS OUT #################
@@ -49,9 +49,13 @@ get_account_result = client.private.get_account(
 )
 
 orderbook = client.public.get_orderbook(
-  market=MARKET_ETH_USD
+  market=MARKET_BTC_USD
 )
-print(f" > {orderbook}")
+print(orderbook.data["asks"][1]['price'])
+
+last_ask = orderbook.data["asks"][1]['price']
+
+rebate= 50
 
 
 
@@ -64,14 +68,25 @@ def ordenes():
                 side = constants.ORDER_SIDE_BUY,
                 order_type = constants.ORDER_TYPE_LIMIT,
                 post_only = False,
-                size = '0.001',
-                price = '19380',
-                limit_fee = '0.1',
+                size = '1.0',
+                price = f'{last_ask - rebate}',
+                limit_fee = '0.0005',
                 expiration = one_minute_from_now_iso,
+        )
+        create_order_result = client.private.create_order(
+                position_id=account['positionId'],
+                market=constants.MARKET_BTC_USD,
+                side=constants.ORDER_SIDE_SELL,
+                order_type=constants.ORDER_TYPE_LIMIT,
+                post_only=False,
+                size='1.0',
+                price= f'{last_ask - rebate}',
+                limit_fee='0.05',
+                expiration=one_minute_from_now_iso,
         )
         print(create_order_result.data)
         print(create_order_result.headers)
-
+ordenes()
 schedule.every(1).minutes.do(ordenes)
 
 while True:
