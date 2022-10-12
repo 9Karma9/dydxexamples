@@ -1,9 +1,13 @@
+import string
+
 from dydx3 import Client
 from dydx3 import constants
 from dydx3 import epoch_seconds_to_iso
 import time
 import schedule
 from dydx3.constants import MARKET_BTC_USD
+from time import sleep
+
 
 
 ########################## YOU FILL THIS OUT #################
@@ -47,19 +51,39 @@ else:
 get_account_result = client.private.get_account(
         ethereum_address = _eth_address
 )
+##REQUEST ON ORDERBOOK##
 
-orderbook = client.public.get_orderbook(
-  market=MARKET_BTC_USD
-)
-print(orderbook.data["asks"][1]['price'])
 
-last_ask = orderbook.data["asks"][1]['price']
 
-rebate= 50
+# orderbook = client.public.get_orderbook(
+#         market=MARKET_BTC_USD
+# )
+#
+# print(orderbook.data["asks"][1]['price'])
+# last_ask = orderbook.data["asks"][1]['price']
+# rebate= '50'
+# pprice= int(last_ask) - int(rebate)
+# pprice2= int(last_ask) + int(rebate)
+# print(pprice, pprice2)
+
+
+
+
 
 
 
 def ordenes():
+        orderbook = client.public.get_orderbook(
+                market=MARKET_BTC_USD
+        )
+
+        print(orderbook.data["asks"][1]['price'])
+        last_ask = orderbook.data["asks"][1]['price']
+        rebate = '25'
+        pprice = int(last_ask) - int(rebate)
+        pprice2 = int(last_ask) + int(rebate)
+        print(pprice, pprice2)
+
         account = get_account_result.data['account']
         one_minute_from_now_iso = epoch_seconds_to_iso(time.time() + 70)
         create_order_result = client.private.create_order(
@@ -69,7 +93,7 @@ def ordenes():
                 order_type = constants.ORDER_TYPE_LIMIT,
                 post_only = False,
                 size = '1.0',
-                price = f'{last_ask - rebate}',
+                price = str(pprice),
                 limit_fee = '0.0005',
                 expiration = one_minute_from_now_iso,
         )
@@ -80,14 +104,14 @@ def ordenes():
                 order_type=constants.ORDER_TYPE_LIMIT,
                 post_only=False,
                 size='1.0',
-                price= f'{last_ask - rebate}',
+                price= str(pprice2),
                 limit_fee='0.05',
                 expiration=one_minute_from_now_iso,
         )
         print(create_order_result.data)
         print(create_order_result.headers)
 ordenes()
-schedule.every(1).minutes.do(ordenes)
+schedule.every(30).seconds.do(ordenes)
 
 while True:
         schedule.run_pending()
