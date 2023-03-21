@@ -41,17 +41,22 @@ tradingrewards/
 
 dydxcheckhistory.sh
 
-10) https://twitter.com/LawrenceChiu14/status/1532731768964538370
+10) https://twitter.com/LawrenceChiu14/status/1532731768964538370 (DEPRECATED)
 
-functions_layer2transfer.py
+functions_layer2transfer.py (DEPRECATED)
 
 11) https://twitter.com/LawrenceChiu14/status/1536031217103028224
 
 gasnow.py
 
-12) Not mentioned on twitter
+12) https://twitter.com/LawrenceChiu14/status/1590646478569369600
+
+dydxl2funding/
+
+13) Not mentioned on twitter
 
 README - You're reading it
+dydxfees.py
 dydxmarkets.py
 monitorfilesystem.sh
-sample.py
+sample.py - This is to demonstrate a bug.  Do not use.
